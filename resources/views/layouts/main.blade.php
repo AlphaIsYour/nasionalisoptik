@@ -19,8 +19,8 @@
                 <li><a href="{{ route('contact') }}" class="text-[#A78B7D] font-medium no-underline hover:opacity-70 transition">Kontak</a></li>
             </ul>
             <div class="flex">
-                <input type="text" placeholder="Cari..." class="px-4 py-2 border border-[#A78B7D] rounded-l outline-none">
-                <button type="submit" class="px-4 py-2 bg-[#A78B7D] text-white border-none rounded-r cursor-pointer hover:opacity-90 transition">Cari</button>
+                <input type="text" placeholder="Cari..." class="px-4 py-1 border border-[#A78B7D] rounded-l-xl outline-none">
+                <button type="submit" class="px-4 py-1 bg-[#A78B7D] text-white border-none rounded-r-xl cursor-pointer hover:opacity-90 transition">Cari</button>
             </div>
         </div>
     </nav>
