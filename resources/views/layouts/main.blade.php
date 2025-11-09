@@ -31,7 +31,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#A78B7D] text-white pt-12 px-8 pb-4 mt-auto">
+    <footer class="bg-[#70574D] text-white pt-12 px-8 pb-4 mt-auto">
         <div class="max-w-7xl mx-auto grid grid-cols-[2fr_1fr_1fr] gap-12 mb-8">
             <div>
                 <h3 class="mb-4 text-xl">Optik Nasionalis Kacamata</h3>

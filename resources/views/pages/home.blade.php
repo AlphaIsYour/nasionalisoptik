@@ -8,19 +8,18 @@
 <div class="flex justify-center w-full px-4">
   <div class="max-w-4xl mb-8 text-center">
     <h1 class="font-bold text-4xl mb-4">FIND THE PERFECT GLASSES FOR YOUR STYLE</h1>
-    <p>Glasses are more than just vision aids – they're a fashion statement. From clear lenses to stylish sunglasses, every pair tells a story about who you are.</p>
+    <p>Glasses are more than just vision aids - they're a fashion statement. From clear lenses to stylish sunglasses, every pair tells a story about who you are.</p>
   </div>
 </div>
 
 @include('components.auto-slide')
 
-{{-- Showoff Carousel Section --}}
 <div class="w-full py-16 bg-white -mt-40">
 
   @php
     $showoffItems = [
       [
-        'image' => '/image/glasses/img7.png',
+        'image' => '/image/glasses/img13.png',
         'title' => 'KOLEKSI PREMIUM',
         'topic' => 'Classic Frame',
         'description' => 'Kacamata klasik dengan desain timeless yang cocok untuk berbagai kesempatan. Memberikan kesan profesional dan elegan.',
@@ -34,7 +33,7 @@
         ]
       ],
       [
-        'image' => '/image/glasses/img2.png',
+        'image' => '/image/glasses/img8.png',
         'title' => 'KOLEKSI MODERN',
         'topic' => 'Sport Edition',
         'description' => 'Desain sporty yang dinamis untuk gaya hidup aktif Anda. Nyaman digunakan untuk berbagai aktivitas outdoor.',
@@ -48,7 +47,7 @@
         ]
       ],
       [
-        'image' => '/image/glasses/img3.png',
+        'image' => '/image/glasses/img9.png',
         'title' => 'KOLEKSI FASHION',
         'topic' => 'Trendy Style',
         'description' => 'Mengikuti tren fashion terkini dengan desain yang bold dan berani. Sempurna untuk Anda yang ingin tampil beda.',
@@ -62,7 +61,7 @@
         ]
       ],
       [
-        'image' => '/image/glasses/img4.png',
+        'image' => '/image/glasses/img10.png',
         'title' => 'KOLEKSI VINTAGE',
         'topic' => 'Retro Classic',
         'description' => 'Sentuhan vintage yang membawa Anda kembali ke era klasik. Desain retro yang never out of style.',
@@ -76,7 +75,7 @@
         ]
       ],
       [
-        'image' => '/image/glasses/img5.png',
+        'image' => '/image/glasses/img11.png',
         'title' => 'KOLEKSI ELEGANT',
         'topic' => 'Luxury Frame',
         'description' => 'Kemewahan dalam setiap detail. Kacamata premium untuk Anda yang mengutamakan kualitas dan eksklusivitas.',
@@ -90,7 +89,7 @@
         ]
       ],
       [
-        'image' => '/image/glasses/img6.png',
+        'image' => '/image/glasses/img12.png',
         'title' => 'KOLEKSI CASUAL',
         'topic' => 'Everyday Wear',
         'description' => 'Desain kasual yang nyaman untuk penggunaan sehari-hari. Cocok untuk berbagai aktivitas dan suasana.',

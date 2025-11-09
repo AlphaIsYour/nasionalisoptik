@@ -41,9 +41,9 @@
 }
 
 .showoff-carousel .list .item img {
-    width: 50%;
+    width: 80%;
     position: absolute;
-    right: 0;
+    right: -35%;
     top: 50%;
     transform: translateY(-50%);
     transition: right 1.5s;
@@ -306,6 +306,7 @@
 
 .showoff-carousel.showDetail .list .item:nth-child(2) img {
     right: 50%;
+    width: 60%;
 }
 
 .showoff-carousel.showDetail .list .item:nth-child(2) .detail {
