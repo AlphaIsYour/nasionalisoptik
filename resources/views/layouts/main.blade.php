@@ -16,13 +16,13 @@
             <ul class="flex justify-center list-none gap-8 flex-1">
                 <li><a href="{{ route('home') }}" class="text-[#70574D] font-medium no-underline hover:opacity-70 transition">Beranda</a></li>
                 <li><a href="{{ route('about') }}" class="text-[#70574D] font-medium no-underline hover:opacity-70 transition">Tentang Toko</a></li>
-                <li><a href="{{ route('products') }}" class="text-[#70574D] font-medium no-underline hover:opacity-70 transition">Produk Layanan</a></li>
+                <li><a href="{{ route('products.index') }}" class="text-[#70574D] font-medium no-underline hover:opacity-70 transition">Produk Layanan</a></li>
                 <li><a href="{{ route('contact') }}" class="text-[#70574D] font-medium no-underline hover:opacity-70 transition">Kontak</a></li>
             </ul>
-            <div class="flex">
+            {{-- <div class="flex">
                 <input type="text" placeholder="Cari..." class="px-4 py-1 border border-[#70574D] rounded-l-xl outline-none">
                 <button type="submit" class="px-4 py-1 bg-[#70574D] text-white border-none rounded-r-xl cursor-pointer hover:opacity-90 transition">Cari</button>
-            </div>
+            </div> --}}
         </div>
     </nav>
 
@@ -44,7 +44,7 @@
                 <ul class="list-none">
                     <li class="mb-2"><a href="{{ route('home') }}" class="text-white no-underline hover:opacity-80 transition">Beranda</a></li>
                     <li class="mb-2"><a href="{{ route('about') }}" class="text-white no-underline hover:opacity-80 transition">Tentang Toko</a></li>
-                    <li class="mb-2"><a href="{{ route('products') }}" class="text-white no-underline hover:opacity-80 transition">Produk Layanan</a></li>
+                    <li class="mb-2"><a href="{{ route('products.index') }}" class="text-white no-underline hover:opacity-80 transition">Produk Layanan</a></li>
                     <li class="mb-2"><a href="{{ route('contact') }}" class="text-white no-underline hover:opacity-80 transition">Kontak</a></li>
                 </ul>
             </div>

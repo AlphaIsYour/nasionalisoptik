@@ -532,7 +532,7 @@
                 </div>
                 @endif
                 
-                <div class="checkout">
+                <div class="checkout mt-20">
                     <button>TAMBAH KE KERANJANG</button>
                     <button>BELI SEKARANG</button>
                 </div>
