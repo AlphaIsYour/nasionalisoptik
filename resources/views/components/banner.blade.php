@@ -28,7 +28,7 @@
     }
 </style>
 
-<div class="grid grid-cols-5 h-[80vh] w-full">
+<div class="grid grid-cols-5 h-[81vh] w-full">
     <div class="grid-item bg-gradient-to-t from-[#5C5349] to-[#C2B09A]">
         <img src="{{ asset('/image/model/model1.png') }}" alt="Model 1" class="w-95 h-full object-cover">
     </div>

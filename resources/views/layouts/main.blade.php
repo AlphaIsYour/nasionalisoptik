@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Optik Nasionalis Kacamata')</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite(['resources/css/app.css'])
     @yield('styles')
 </head>
@@ -13,14 +14,14 @@
         <div class="max-w-7xl mx-auto px-8 py-4 flex items-center gap-8">
             <img src="/image/logo/nasionalisoptik.png" alt="Logo Optik" class="w-[70px] h-[35px]">
             <ul class="flex justify-center list-none gap-8 flex-1">
-                <li><a href="{{ route('home') }}" class="text-[#A78B7D] font-medium no-underline hover:opacity-70 transition">Beranda</a></li>
-                <li><a href="{{ route('about') }}" class="text-[#A78B7D] font-medium no-underline hover:opacity-70 transition">Tentang Toko</a></li>
-                <li><a href="{{ route('products') }}" class="text-[#A78B7D] font-medium no-underline hover:opacity-70 transition">Produk Layanan</a></li>
-                <li><a href="{{ route('contact') }}" class="text-[#A78B7D] font-medium no-underline hover:opacity-70 transition">Kontak</a></li>
+                <li><a href="{{ route('home') }}" class="text-[#70574D] font-medium no-underline hover:opacity-70 transition">Beranda</a></li>
+                <li><a href="{{ route('about') }}" class="text-[#70574D] font-medium no-underline hover:opacity-70 transition">Tentang Toko</a></li>
+                <li><a href="{{ route('products') }}" class="text-[#70574D] font-medium no-underline hover:opacity-70 transition">Produk Layanan</a></li>
+                <li><a href="{{ route('contact') }}" class="text-[#70574D] font-medium no-underline hover:opacity-70 transition">Kontak</a></li>
             </ul>
             <div class="flex">
-                <input type="text" placeholder="Cari..." class="px-4 py-1 border border-[#A78B7D] rounded-l-xl outline-none">
-                <button type="submit" class="px-4 py-1 bg-[#A78B7D] text-white border-none rounded-r-xl cursor-pointer hover:opacity-90 transition">Cari</button>
+                <input type="text" placeholder="Cari..." class="px-4 py-1 border border-[#70574D] rounded-l-xl outline-none">
+                <button type="submit" class="px-4 py-1 bg-[#70574D] text-white border-none rounded-r-xl cursor-pointer hover:opacity-90 transition">Cari</button>
             </div>
         </div>
     </nav>
