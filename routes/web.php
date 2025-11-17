@@ -33,5 +33,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Products Management
         Route::resource('products', AdminProductController::class);
         Route::post('products/{product}/set-primary-image', [AdminProductController::class, 'setPrimaryImage'])->name('products.set-primary');
+        Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class);
     });
 });

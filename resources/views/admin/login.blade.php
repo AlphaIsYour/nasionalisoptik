@@ -6,10 +6,10 @@
     <title>Admin Login - Optik Nasionalis</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-br from-[#A78B7D] to-[#8b7566] min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-sm shadow-2xl w-full max-w-md overflow-hidden">
         <!-- Header -->
-        <div class="bg-[#A78B7D] text-white p-8 text-center">
+        <div class="bg-gray-100 text-black p-8 text-center">
             <h1 class="text-3xl font-bold mb-2">Optik Nasionalis</h1>
             <p class="text-sm opacity-90">Admin Dashboard Login</p>
         </div>

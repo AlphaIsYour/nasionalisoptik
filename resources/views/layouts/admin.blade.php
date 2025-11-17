@@ -11,7 +11,7 @@
 <body class="bg-gray-100">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
-        <aside class="w-64 bg-[#A78B7D] text-white flex-shrink-0">
+        <aside class="w-64 bg-[#70574D] text-white flex-shrink-0">
             <div class="p-6 border-b border-white/10">
                 <h1 class="text-2xl font-bold">Optik Nasionalis</h1>
                 <p class="text-sm opacity-75 mt-1">Admin Panel</p>
@@ -30,6 +30,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                     </svg>
                     Produk
+                </a>
+                
+                <a href="{{ route('admin.services.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-lg {{ request()->routeIs('admin.services.*') ? 'bg-white/20' : 'hover:bg-white/10' }} transition">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Layanan
                 </a>
             </nav>
 
@@ -63,7 +70,7 @@
                     <div>
                         <h2 class="text-xl font-semibold text-gray-800">@yield('title')</h2>
                     </div>
-                    <a href="{{ route('home') }}" target="_blank" class="text-[#A78B7D] hover:underline text-sm font-semibold">
+                    <a href="{{ route('home') }}" target="_blank" class="text-[#70574D] hover:underline text-sm font-semibold">
                         Lihat Website →
                     </a>
                 </div>
