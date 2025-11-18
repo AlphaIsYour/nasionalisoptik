@@ -533,7 +533,7 @@
                 @endif
                 
                 <div class="checkout mt-20">
-                    <button>TAMBAH KE KERANJANG</button>
+                    {{-- <button>TAMBAH KE KERANJANG</button> --}}
                     <button>BELI SEKARANG</button>
                 </div>
             </div>
@@ -586,7 +586,7 @@
                     </div>
                 </div>
                 <div class="checkout">
-                    <button>TAMBAH KE KERANJANG</button>
+                    {{-- <button>TAMBAH KE KERANJANG</button> --}}
                     <button>BELI SEKARANG</button>
                 </div>
             </div>

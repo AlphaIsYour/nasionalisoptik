@@ -161,12 +161,12 @@
                     </svg>
                     Beli Sekarang
                 </button>
-                <button onclick="showLoginModal()" class="flex-1 border-2 border-[#70574D] text-[#70574D] py-4 rounded-lg font-semibold hover:bg-[#70574D] hover:text-white transition flex items-center justify-center">
+                {{-- <button onclick="showLoginModal()" class="flex-1 border-2 border-[#70574D] text-[#70574D] py-4 rounded-lg font-semibold hover:bg-[#70574D] hover:text-white transition flex items-center justify-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                     </svg>
                     Tambah ke Keranjang
-                </button>
+                </button> --}}
             </div>
         </div>
     </div>

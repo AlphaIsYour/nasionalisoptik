@@ -4,13 +4,13 @@
 
 @section('content')
 <!-- Hero Section -->
-<div class="bg-[#A78B7D] py-20 flex justify-center items-center">
+<div class="bg-[#70574D] py-20 flex justify-center items-center">
     <h1 class="text-4xl text-white font-bold">TENTANG KAMI</h1>
 </div>
 
 <!-- Subtitle -->
 <div class="container mx-auto px-4 py-12">
-    <h2 class="text-2xl md:text-3xl text-[#A78B7D] font-bold text-center leading-relaxed max-w-4xl mx-auto">
+    <h2 class="text-2xl md:text-3xl text-[#70574D] font-bold text-center leading-relaxed max-w-4xl mx-auto">
         Berdiri sejak tahun 1994, Nasionalis Optik bergerak di bidang refraksionis optik.
     </h2>
 </div>

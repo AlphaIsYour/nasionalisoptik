@@ -35,12 +35,12 @@
     <footer class="bg-[#70574D] text-white pt-12 px-8 pb-4 mt-auto">
         <div class="max-w-7xl mx-auto grid grid-cols-[2fr_1fr_1fr] gap-12 mb-8">
             <div>
-                <h3 class="mb-4 text-xl">Optik Nasionalis Kacamata</h3>
+                <h3 class="mb-4 text-xl"><strong>Optik Nasionalis Kacamata</strong></h3> 
                 <p>Optik terpercaya yang telah melayani masyarakat selama bertahun-tahun dengan mengutamakan kualitas dan layanan yang ramah.</p>
             </div>
             
             <div>
-                <h3 class="mb-4 text-xl">Menu</h3>
+                <h3 class="mb-4 text-xl"><strong>Menu</strong></h3>
                 <ul class="list-none">
                     <li class="mb-2"><a href="{{ route('home') }}" class="text-white no-underline hover:opacity-80 transition">Beranda</a></li>
                     <li class="mb-2"><a href="{{ route('about') }}" class="text-white no-underline hover:opacity-80 transition">Tentang Toko</a></li>
@@ -50,7 +50,7 @@
             </div>
             
             <div>
-                <h3 class="mb-4 text-xl">Kontak</h3>
+                <h3 class="mb-4 text-xl"><strong>Kontak</strong></h3>
                 <p class="mb-2 leading-relaxed">Jl. Panglima Sudirman 206A<br>(Depan Bank Syariah Indonesia)<br>Turen, Malang</p>
                 <p class="mb-2 leading-relaxed">+62 813 3129 6965</p>
                 <p class="mb-2 leading-relaxed">Senin - Minggu: 08:00 - 19:00</p>

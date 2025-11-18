@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<div class="bg-[#A78B7D] py-16 px-4">
+<div class="bg-[#70574D] py-16 px-4">
     <div class="container mx-auto text-center">
         <h1 class="text-3xl md:text-4xl text-white font-bold mb-4">
             KAMI MENYEDIAKAN SOLUSI PENGLIHATAN TERBAIK UNTUK KEBUTUHAN ANDA
@@ -13,15 +13,18 @@
 </div>
 
 <!-- Category Slider -->
-<div class="py-8 overflow-hidden">
+<div class="py-2 overflow-hidden">
     <div class="container mx-auto px-4">
         <div class="relative">
             <div class="slider-container overflow-hidden">
-                <div class="slider-track flex gap-4 my-2">
-                    <!-- Active: All Products -->
-                    <button data-category="" class="category-filter px-6 py-3 bg-white rounded-full shadow hover:shadow-lg transition whitespace-nowrap border-2 border-[#A78B7D] text-[#A78B7D] font-semibold flex-shrink-0 active">
-                        Semua Produk
-                    </button>
+                <div class="slider-track flex gap-4 my-6">
+
+                    
+                    @foreach($categories as $category)
+                        <button data-category="{{ $category->id }}" class="category-filter px-6 py-3 bg-white rounded-full shadow hover:shadow-lg transition whitespace-nowrap hover:border-[#A78B7D] border-2 border-transparent flex-shrink-0">
+                            {{ $category->name }}
+                        </button>
+                    @endforeach
                     
                     @foreach($categories as $category)
                         <button data-category="{{ $category->id }}" class="category-filter px-6 py-3 bg-white rounded-full shadow hover:shadow-lg transition whitespace-nowrap hover:border-[#A78B7D] border-2 border-transparent flex-shrink-0">
@@ -39,13 +42,16 @@
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
-.slider-track { animation: scroll 30s linear infinite; }
+.slider-track { 
+    animation: scroll 30s linear infinite;
+    transition: none; /* Penting: hilangkan transition */
+}
 .slider-track:hover { animation-play-state: paused; }
 .slider-container::-webkit-scrollbar { display: none; }
 </style>
 
 <!-- Services Section -->
-<div class="container mx-auto px-20 py-16">
+<div class="container mx-auto px-20 py-10">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         @foreach($services as $service)
         <a href="{{ $service->link ?? '#' }}" class="bg-white grid grid-cols-2 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group">
@@ -76,7 +82,7 @@
     <div class="container mx-auto px-20">
         <!-- Section Title -->
         <div class="text-center mb-12">
-            <button class="bg-[#A78B7D] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#8b7566] transition">
+            <button class="bg-[#70574D] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#8b7566] transition">
                 Lihat Produk Kami
             </button>
         </div>
