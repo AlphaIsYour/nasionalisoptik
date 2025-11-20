@@ -7,10 +7,24 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite(['resources/css/app.css'])
     @yield('styles')
+    <style>
+    @font-face {
+    font-family: 'Mona';
+    src: url('/fonts/mona-sans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    }
+
+    .mona-sans {
+        font-family: 'Mona', sans-serif;
+        letter-spacing: 0.05em;
+    }
+    </style>
 </head>
 <body class="min-h-screen flex flex-col">
     <!-- Navbar -->
-    <nav class="bg-white shadow-md">
+    <nav class="bg-white shadow-md mona-sans">
         <div class="max-w-7xl mx-auto px-8 py-4 flex items-center gap-8">
             <img src="/image/logo/nasionalisoptik.png" alt="Logo Optik" class="w-[70px] h-[35px]">
             <ul class="flex justify-center list-none gap-8 flex-1">
@@ -32,7 +46,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#70574D] text-white pt-12 px-8 pb-4 mt-auto">
+    <footer class="bg-[#70574D] text-white pt-12 px-8 pb-4 mt-auto mona-sans">
         <div class="max-w-7xl mx-auto grid grid-cols-[2fr_1fr_1fr] gap-12 mb-8">
             <div>
                 <h3 class="mb-4 text-xl"><strong>Optik Nasionalis Kacamata</strong></h3> 

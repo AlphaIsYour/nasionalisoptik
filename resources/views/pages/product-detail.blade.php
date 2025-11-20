@@ -3,9 +3,23 @@
 @section('title', $product->name . ' - Optik Nasionalis')
 
 @section('content')
+<style>
+    @font-face {
+    font-family: 'Mona';
+    src: url('/fonts/mona-sans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    }
+
+    .mona-sans {
+        font-family: 'Mona', sans-serif;
+        letter-spacing: 0.05em;
+    }
+</style>
 <!-- Breadcrumb -->
 <div class="bg-[#70574D] py-4">
-    <div class="container mx-auto px-20">
+    <div class="container mx-auto px-20 mona-sans">
         <div class="flex items-center text-sm text-white">
             <a href="{{ route('home') }}" class="hover:text-gray-200">Beranda</a>
             <svg class="w-4 h-4 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -21,7 +35,7 @@
 </div>
 
 <!-- Product Detail -->
-<div class="container mx-auto px-5 sm:px-20 py-3 sm:py-12">
+<div class="container mx-auto px-5 sm:px-20 py-3 sm:py-12 mona-sans">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
         <!-- Product Images -->
         <div>

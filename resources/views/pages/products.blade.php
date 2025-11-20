@@ -3,40 +3,6 @@
 @section('title', 'Produk - Optik Nasionalis Kacamata')
 
 @section('content')
-<!-- Hero Section -->
-<div class="bg-[#70574D] py-16 px-4">
-    <div class="container mx-auto text-center">
-        <h1 class="text-3xl md:text-4xl text-white font-bold mb-4">
-            KAMI MENYEDIAKAN SOLUSI PENGLIHATAN TERBAIK UNTUK KEBUTUHAN ANDA
-        </h1>
-    </div>
-</div>
-
-<!-- Category Slider -->
-<div class="py-2 overflow-hidden">
-    <div class="container mx-auto px-4">
-        <div class="relative">
-            <div class="slider-container overflow-hidden">
-                <div class="slider-track flex gap-4 my-6">
-
-                    
-                    @foreach($categories as $category)
-                        <button data-category="{{ $category->id }}" class="category-filter px-6 py-3 bg-white rounded-full shadow hover:shadow-lg transition whitespace-nowrap hover:border-[#A78B7D] border-2 border-transparent flex-shrink-0">
-                            {{ $category->name }}
-                        </button>
-                    @endforeach
-                    
-                    @foreach($categories as $category)
-                        <button data-category="{{ $category->id }}" class="category-filter px-6 py-3 bg-white rounded-full shadow hover:shadow-lg transition whitespace-nowrap hover:border-[#A78B7D] border-2 border-transparent flex-shrink-0">
-                            {{ $category->name }}
-                        </button>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <style>
 @keyframes scroll {
     0% { transform: translateX(0); }
@@ -48,19 +14,83 @@
 }
 .slider-track:hover { animation-play-state: paused; }
 .slider-container::-webkit-scrollbar { display: none; }
+
+  @font-face {
+    font-family: 'CustomFont';
+    src: url('/fonts/Bebaskai.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .custom-font {
+    font-family: 'CustomFont', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+    @font-face {
+    font-family: 'Mona';
+    src: url('/fonts/mona-sans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .mona-sans {
+    font-family: 'Mona', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
 </style>
+<!-- Hero Section -->
+<div class="bg-[#70574D] py-8 px-4">
+    <div class="container mx-auto text-center">
+        <h1 class="text-3xl md:text-4xl text-white custom-font">
+            KAMI MENYEDIAKAN SOLUSI PENGLIHATAN TERBAIK UNTUK KEBUTUHAN ANDA
+        </h1>
+    </div>
+</div>
+
+<!-- Category Slider -->
+<div class="overflow-hidden">
+    <div class="container mx-auto px-4">
+        <div class="relative">
+            <div class="slider-container overflow-hidden">
+                <div class="slider-track flex gap-4 my-6">
+
+                    
+                    @foreach($categories as $category)
+                        <button data-category="{{ $category->id }}" class="category-filter px-6 py-3 bg-white rounded-full shadow hover:shadow-lg transition whitespace-nowrap hover:border-[#A78B7D] border-2 border-transparent flex-shrink-0 mona-sans text-sm">
+                            {{ $category->name }}
+                        </button>
+                    @endforeach
+                    
+                    @foreach($categories as $category)
+                        <button data-category="{{ $category->id }}" class="category-filter px-6 py-3 bg-white rounded-full shadow hover:shadow-lg transition whitespace-nowrap hover:border-[#A78B7D] border-2 border-transparent flex-shrink-0 mona-sans text-sm">
+                            {{ $category->name }}
+                        </button>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- Services Section -->
-<div class="container mx-auto px-20 py-10">
+<div class="max-w-7xl mx-auto px-20 py-10 ">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         @foreach($services as $service)
-        <a href="{{ $service->link ?? '#' }}" class="bg-white grid grid-cols-2 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group">
-            <div class="p-6">
-                <h3 class="font-bold text-lg mb-2">{{ strtoupper($service->title) }}</h3>
-                <p class="text-gray-600 text-sm mb-[70%]">{{ $service->description }}</p>
-                <div class="flex items-center text-[#A78B7D] font-semibold">
+        <a href="{{ $service->link ?? '#' }}" class="bg-white grid grid-cols-2 h-64 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group">
+            <div class="p-6 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-2xl mb-2 custom-font">{{ strtoupper($service->title) }}</h3>
+                    <p class="text-gray-600 text-sm line-clamp-3 mona-sans">{{ $service->description }}</p>
+                </div>
+                <div class="flex items-center text-[#A78B7D] font-semibold mona-sans">
                     <span>Selengkapnya</span>
-                    <svg class="w-5 h-5 ml-2 group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 mt-1 ml-2 group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
                 </div>
@@ -82,7 +112,7 @@
     <div class="container mx-auto px-20">
         <!-- Section Title -->
         <div class="text-center mb-12">
-            <button class="bg-[#70574D] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#8b7566] transition">
+            <button class="bg-[#70574D] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#8b7566] transition mona-sans">
                 Lihat Produk Kami
             </button>
         </div>
@@ -90,7 +120,7 @@
         <!-- Filter & Products Grid -->
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Sidebar Filter -->
-            <div class="w-full lg:w-64 flex-shrink-0">
+            <div class="w-full lg:w-64 flex-shrink-0 mona-sans">
                 <div class="bg-white rounded-lg shadow p-6 sticky top-4">
                     <form id="filterForm">
                         <!-- Gender Filter -->
@@ -99,19 +129,19 @@
                             <div class="space-y-2">
                                 <label class="flex items-center">
                                     <input type="checkbox" name="gender[]" value="pria" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Pria</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Pria</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="gender[]" value="wanita" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Wanita</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Wanita</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="gender[]" value="anak" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Anak-anak</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Anak-anak</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="gender[]" value="unisex" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Unisex</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Unisex</span>
                                 </label>
                             </div>
                         </div>
@@ -122,19 +152,19 @@
                             <div class="space-y-2">
                                 <label class="flex items-center">
                                     <input type="checkbox" name="shape[]" value="Bulat" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Bulat</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Bulat</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="shape[]" value="Kotak" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Kotak</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Kotak</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="shape[]" value="Aviator" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Aviator</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Aviator</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="shape[]" value="Cat Eye" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Cat Eye</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Cat Eye</span>
                                 </label>
                             </div>
                         </div>
@@ -145,15 +175,15 @@
                             <div class="space-y-2">
                                 <label class="flex items-center">
                                     <input type="checkbox" name="material[]" value="Metal" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Metal</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Metal</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="material[]" value="Plastik" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Plastik</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Plastik</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="material[]" value="Titanium" class="filter-checkbox w-4 h-4 text-[#A78B7D] rounded">
-                                    <span class="ml-2 text-gray-700">Titanium</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Titanium</span>
                                 </label>
                             </div>
                         </div>
@@ -164,7 +194,7 @@
             <!-- Products Grid -->
             <div class="flex-1">
                 <!-- Sort & View Options -->
-                <div class="flex justify-between items-center mb-6">
+                <div class="flex justify-between items-center mb-6 mona-sans">
                     <p class="text-gray-600" id="productCount">Menampilkan {{ $products->total() }} Produk</p>
                     <select id="sortSelect" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#A78B7D]">
                         <option value="popular">Paling Populer</option>
@@ -175,20 +205,20 @@
                 </div>
 
                 <!-- Loading Indicator -->
-                <div id="loading" class="hidden text-center py-8">
+                <div id="loading" class="hidden text-center py-8 mona-sans">
                     <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#A78B7D]"></div>
                     <p class="text-gray-600 mt-2">Memuat produk...</p>
                 </div>
 
                 <!-- Product Cards -->
-                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mona-sans">
                     @foreach($products as $product)
                         @include('partials.product-card', ['product' => $product])
                     @endforeach
                 </div>
 
                 <!-- No Products -->
-                <div id="noProducts" class="hidden text-center py-12">
+                <div id="noProducts" class="hidden text-center py-12 mona-sans">
                     <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
                     </svg>
@@ -197,7 +227,7 @@
                 </div>
 
                 <!-- Pagination -->
-                <div id="paginationContainer" class="flex justify-center items-center gap-2 mt-12">
+                <div id="paginationContainer" class="flex justify-center items-center gap-2 mt-12 mona-sans">
                     {{ $products->links() }}
                 </div>
             </div>

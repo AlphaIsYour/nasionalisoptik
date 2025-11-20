@@ -5,12 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Optik Nasionalis</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+          @font-face {
+    font-family: 'CustomFont';
+    src: url('/fonts/titling.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .custom-font {
+    font-family: 'CustomFont', sans-serif;
+    letter-spacing: 0.1em;
+  }
+    </style>
 </head>
-<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+<body class="bg-[#e6e5e5] min-h-screen flex items-center justify-center p-4">
     <div class="bg-white rounded-sm shadow-2xl w-full max-w-md overflow-hidden">
         <!-- Header -->
         <div class="bg-gray-100 text-black p-8 text-center">
-            <h1 class="text-3xl font-bold mb-2">Optik Nasionalis</h1>
+            <h1 class="text-3xl font-bold mb-2 custom-font">Optik Nasionalis</h1>
             <p class="text-sm opacity-90">Admin Dashboard Login</p>
         </div>
 
@@ -99,9 +113,9 @@
         </div>
 
         <!-- Footer -->
-        <div class="bg-gray-50 px-8 py-4 text-center text-gray-600 text-sm border-t">
+        {{-- <div class="bg-gray-50 px-8 py-4 text-center text-gray-600 text-sm border-t">
             <p>Default: admin@optiknasionalis.com / admin123</p>
-        </div>
+        </div> --}}
     </div>
 </body>
 </html>

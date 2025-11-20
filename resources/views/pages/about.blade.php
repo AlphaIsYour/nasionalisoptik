@@ -4,19 +4,57 @@
 
 @section('content')
 <!-- Hero Section -->
-<div class="bg-[#70574D] py-20 flex justify-center items-center">
-    <h1 class="text-4xl text-white font-bold">TENTANG KAMI</h1>
+<style>
+      @font-face {
+    font-family: 'CustomFont';
+    src: url('/fonts/Bebaskai.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .custom-font {
+    font-family: 'CustomFont', sans-serif;
+    letter-spacing: 0.05em;
+  }
+      @font-face {
+    font-family: 'Mona';
+    src: url('/fonts/mona-sans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .mona-sans {
+    font-family: 'Mona', sans-serif;
+    letter-spacing: 0.05em;
+  }
+      @font-face {
+    font-family: 'Urban';
+    src: url('/fonts/BebasKai.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .urban-shadow {
+    font-family: 'Urban', sans-serif;
+    letter-spacing: 0.05em;
+  }
+</style>
+<div class="bg-[#70574D] py-8 flex justify-center items-center">
+    <h1 class="text-4xl text-white custom-font">TENTANG KAMI</h1>
 </div>
 
 <!-- Subtitle -->
-<div class="container mx-auto px-4 py-12">
-    <h2 class="text-2xl md:text-3xl text-[#70574D] font-bold text-center leading-relaxed max-w-4xl mx-auto">
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl md:text-4xl text-[#70574D] urban-shadow     text-center leading-relaxed max-w-5xl mx-auto">
         Berdiri sejak tahun 1994, Nasionalis Optik bergerak di bidang refraksionis optik.
     </h2>
 </div>
 
 <!-- Content Sections -->
-<div class="container mx-auto px-16 space-y-8 pb-16">
+<div class="container mx-auto px-16 space-y-8 pb-16 mona-sans">
     <!-- Section 1 -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div class="w-full h-full">
