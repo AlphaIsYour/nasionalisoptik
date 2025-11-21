@@ -168,20 +168,76 @@
             @endif
 
             <!-- CTA Buttons -->
-            <div class="flex gap-4">
-                <button onclick="showLoginModal()" class="flex-1 bg-[#70574D] text-white py-4 rounded-lg font-semibold hover:bg-[#8b7566] transition shadow-lg flex items-center justify-center">
-                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-                    </svg>
-                    Beli Sekarang
-                </button>
-                {{-- <button onclick="showLoginModal()" class="flex-1 border-2 border-[#70574D] text-[#70574D] py-4 rounded-lg font-semibold hover:bg-[#70574D] hover:text-white transition flex items-center justify-center">
-                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                    </svg>
-                    Tambah ke Keranjang
-                </button> --}}
-            </div>
+            @auth
+                @if($product->stock > 0)
+                    <form method="POST" action="{{ route('cart.add', $product) }}">
+                        @csrf
+                        <div class="flex items-center gap-4 mb-4">
+                            <label class="text-gray-700 font-medium">Jumlah:</label>
+                            <div class="flex items-center border-2 border-gray-300">
+                                <button type="button" onclick="decreaseQty()" class="px-4 py-2 hover:bg-gray-100">-</button>
+                                <input type="number" name="quantity" id="quantity" value="1" min="1" max="{{ $product->stock }}" class="w-16 text-center border-x-2 border-gray-300 py-2 focus:outline-none">
+                                <button type="button" onclick="increaseQty()" class="px-4 py-2 hover:bg-gray-100">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <button type="submit" class="flex-1 border-2 border-[#70574D] text-[#70574D] py-4 font-semibold hover:bg-[#70574D] hover:text-white transition flex items-center justify-center">
+                                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                Tambah ke Keranjang
+                            </button>
+                            <a href="{{ route('checkout.index') }}" onclick="event.preventDefault(); addToCartAndCheckout({{ $product->id }})" class="flex-1 bg-[#70574D] text-white py-4 text-center font-semibold hover:opacity-90 transition flex items-center justify-center">
+                                Beli Sekarang
+                            </a>
+                        </div>
+                    </form>
+                @else
+                    <button disabled class="w-full bg-gray-400 text-white py-4 font-semibold cursor-not-allowed">
+                        Stok Habis
+                    </button>
+                @endif
+            @else
+                <a href="{{ route('login') }}" class="block w-full text-center bg-[#70574D] text-white py-4 font-semibold hover:opacity-90 transition">
+                    Login untuk Membeli
+                </a>
+            @endauth
+
+            <script>
+            function increaseQty() {
+                let qty = document.getElementById('quantity');
+                let max = parseInt(qty.max);
+                if (parseInt(qty.value) < max) {
+                    qty.value = parseInt(qty.value) + 1;
+                }
+            }
+
+            function decreaseQty() {
+                let qty = document.getElementById('quantity');
+                if (parseInt(qty.value) > 1) {
+                    qty.value = parseInt(qty.value) - 1;
+                }
+            }
+
+            function addToCartAndCheckout(productId) {
+                // Add to cart first
+                fetch(`/cart/add/${productId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        quantity: document.getElementById('quantity').value
+                    })
+                }).then(() => {
+                    // Then redirect to checkout
+                    window.location.href = '{{ route("checkout.index") }}';
+                });
+            }
+
+            </script>   
         </div>
     </div>
 

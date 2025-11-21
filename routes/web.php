@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\User\AuthController as UserAuthController; // ← Tambah ini
 
 Route::get('/', function () {
     return view('pages.home');
@@ -21,6 +22,37 @@ Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
 
+// User Authentication Routes
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [UserAuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [UserAuthController::class, 'login']);
+    Route::get('/register', [UserAuthController::class, 'showRegister'])->name('register');
+    Route::post('/register', [UserAuthController::class, 'register']);
+});
+
+Route::post('/logout', [UserAuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+// User Profile & Cart Routes (Protected)
+Route::middleware('auth')->group(function () {
+    // Profile
+    Route::get('/profile', [\App\Http\Controllers\User\ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [\App\Http\Controllers\User\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [\App\Http\Controllers\User\ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [\App\Http\Controllers\User\ProfileController::class, 'updatePassword'])->name('profile.password');
+    
+    // Cart
+    Route::get('/cart', [\App\Http\Controllers\User\CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{product}', [\App\Http\Controllers\User\CartController::class, 'add'])->name('cart.add');
+    Route::put('/cart/{cartItem}', [\App\Http\Controllers\User\CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/{cartItem}', [\App\Http\Controllers\User\CartController::class, 'remove'])->name('cart.remove');
+    Route::delete('/cart', [\App\Http\Controllers\User\CartController::class, 'clear'])->name('cart.clear');
+    
+    // Checkout
+    Route::get('/checkout', [\App\Http\Controllers\User\CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [\App\Http\Controllers\User\CheckoutController::class, 'process'])->name('checkout.process');
+    Route::get('/checkout/success/{order}', [\App\Http\Controllers\User\CheckoutController::class, 'success'])->name('checkout.success');
+});
+// Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login.post');
