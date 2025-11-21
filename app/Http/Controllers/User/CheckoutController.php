@@ -5,12 +5,20 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
+use App\Services\XenditService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
+    protected XenditService $xenditService;
+
+    public function __construct(XenditService $xenditService)
+    {
+        $this->xenditService = $xenditService;
+    }
+
     // Show Checkout Page
     public function index()
     {
@@ -64,7 +72,7 @@ class CheckoutController extends Controller
                 'city' => $validated['city'],
                 'postal_code' => $validated['postal_code'],
                 'subtotal' => $cart->subtotal,
-                'shipping_cost' => 0, // Bisa diupdate nanti
+                'shipping_cost' => 0,
                 'total' => $cart->subtotal,
                 'payment_method' => $validated['payment_method'],
                 'notes' => $validated['notes'] ?? null,
@@ -84,12 +92,34 @@ class CheckoutController extends Controller
                 $item->product->decrement('stock', $item->quantity);
             }
 
+            // Create Xendit Invoice (for e_wallet and credit_card)
+            if (in_array($validated['payment_method'], ['e_wallet', 'credit_card'])) {
+                $xenditResult = $this->xenditService->createInvoice($order);
+
+                if ($xenditResult['success']) {
+                    $order->update([
+                        'xendit_invoice_id' => $xenditResult['invoice_id'],
+                        'xendit_invoice_url' => $xenditResult['invoice_url'],
+                    ]);
+                } else {
+                    DB::rollBack();
+                    return redirect()->back()->with('error', 'Gagal membuat invoice pembayaran: ' . $xenditResult['error']);
+                }
+            }
+
             // Clear cart
             $cart->items()->delete();
 
             DB::commit();
 
-            return redirect()->route('checkout.success', $order)->with('success', 'Pesanan berhasil dibuat!');
+            // Redirect based on payment method
+            if (in_array($validated['payment_method'], ['e_wallet', 'credit_card'])) {
+                // Redirect to Xendit payment page
+                return redirect()->away($order->xendit_invoice_url);
+            } else {
+                // Redirect to success page for bank transfer
+                return redirect()->route('checkout.success', $order)->with('success', 'Pesanan berhasil dibuat!');
+            }
 
         } catch (\Exception $e) {
             DB::rollBack();

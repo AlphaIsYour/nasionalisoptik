@@ -33,6 +33,7 @@ Route::middleware('guest')->group(function () {
 Route::post('/logout', [UserAuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 // User Profile & Cart Routes (Protected)
+// User Profile, Cart & Orders Routes (Protected)
 Route::middleware('auth')->group(function () {
     // Profile
     Route::get('/profile', [\App\Http\Controllers\User\ProfileController::class, 'index'])->name('profile.index');
@@ -51,7 +52,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [\App\Http\Controllers\User\CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [\App\Http\Controllers\User\CheckoutController::class, 'process'])->name('checkout.process');
     Route::get('/checkout/success/{order}', [\App\Http\Controllers\User\CheckoutController::class, 'success'])->name('checkout.success');
+    
+    // Orders
+    Route::get('/orders', [\App\Http\Controllers\User\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [\App\Http\Controllers\User\OrderController::class, 'show'])->name('orders.show');
+    Route::post('/orders/{order}/upload-proof', [\App\Http\Controllers\User\OrderController::class, 'uploadProof'])->name('orders.upload-proof');
+    Route::post('/orders/{order}/cancel', [\App\Http\Controllers\User\OrderController::class, 'cancel'])->name('orders.cancel');
 });
+
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('login', [AuthController::class, 'showLogin'])->name('login');
@@ -68,3 +76,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class);
     });
 });
+

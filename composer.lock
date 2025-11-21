@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c514d8f7b9fc5970bdd94287905ef584",
+    "content-hash": "a294b7a17565bdf8a81a5b62183fc763",
     "packages": [
         {
             "name": "brick/math",
@@ -6096,9 +6096,155 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "xendit/xendit-php",
+            "version": "7.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xendit/xendit-php.git",
+                "reference": "4c6e1b9899aef8c6224c7c1ae46963b71435280b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xendit/xendit-php/zipball/4c6e1b9899aef8c6224c7c1ae46963b71435280b",
+                "reference": "4c6e1b9899aef8c6224c7c1ae46963b71435280b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "^7.3",
+                "guzzlehttp/psr7": "^1.7 || ^2.0",
+                "php": "^7.4 || ^8.0",
+                "vlucas/phpdotenv": "^5.5"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "phpunit/phpunit": "^8.0 || ^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Xendit\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "unlicense"
+            ],
+            "authors": [
+                {
+                    "name": "OpenAPI-Generator contributors",
+                    "homepage": "https://openapi-generator.tech"
+                }
+            ],
+            "description": "Xendit PHP SDK",
+            "homepage": "https://openapi-generator.tech",
+            "keywords": [
+                "api",
+                "openapi",
+                "openapi-generator",
+                "openapitools",
+                "php",
+                "rest",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/xendit/xendit-php/issues",
+                "source": "https://github.com/xendit/xendit-php/tree/7.0.0"
+            },
+            "time": "2025-05-29T04:04:47+00:00"
         }
     ],
     "packages-dev": [
+        {
+            "name": "beyondcode/expose",
+            "version": "3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/exposedev/expose.git",
+                "reference": "c52c2d4f08f4a4088ea820c3c827bf732581f809"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/exposedev/expose/zipball/c52c2d4f08f4a4088ea820c3c827bf732581f809",
+                "reference": "c52c2d4f08f4a4088ea820c3c827bf732581f809",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel-zero/phar-updater": "^1.3",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "cboden/ratchet": "dev-master",
+                "chillerlan/php-qrcode": "^5.0",
+                "exposedev/common": "dev-main",
+                "fakerphp/faker": "^1.23",
+                "guzzlehttp/guzzle": "^7.5",
+                "guzzlehttp/psr7": "^1.7|^2.0",
+                "illuminate/database": "^11.5",
+                "illuminate/http": "^11.5",
+                "illuminate/log": "^11.5",
+                "illuminate/pipeline": "^11.5",
+                "illuminate/validation": "^11.5",
+                "illuminate/view": "^11.5",
+                "laminas/laminas-http": "^2.13",
+                "laravel-zero/framework": "^11.0",
+                "laravel/prompts": "^0.3.0@dev",
+                "mockery/mockery": "^1.4.2",
+                "nikic/php-parser": "^v4.10",
+                "nunomaduro/termwind": "^2.0",
+                "nyholm/psr7": "^1.3",
+                "octoper/cuzzle": "dev-master",
+                "phpunit/phpunit": "^10.5.1",
+                "ratchet/pawl": "dev-master",
+                "ratchet/rfc6455": "dev-master",
+                "react/async": "^4.3",
+                "react/child-process": "^0.6.6",
+                "react/http": "dev-websocket-support",
+                "react/socket": "^1.6",
+                "react/stream": "^1.1.1",
+                "riverline/multipart-parser": "^2.0",
+                "symfony/expression-language": "^5.2",
+                "symfony/http-kernel": "^7.0",
+                "symfony/psr-http-message-bridge": "^7.0",
+                "symfony/yaml": "^7.0"
+            },
+            "bin": [
+                "builds/expose"
+            ],
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Expose\\Client\\": "app/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcel Pociot",
+                    "email": "marcel@beyondco.de"
+                }
+            ],
+            "description": "Create public URLs for local sites through any firewall and VPN.",
+            "homepage": "https://sharedwithexpose.com",
+            "keywords": [
+                "expose",
+                "ngrok",
+                "tunnel"
+            ],
+            "support": {
+                "issues": "https://github.com/exposedev/expose/issues",
+                "source": "https://github.com/exposedev/expose/tree/3.0.4"
+            },
+            "time": "2025-09-17T16:43:11+00:00"
+        },
         {
             "name": "fakerphp/faker",
             "version": "v1.24.1",
@@ -6283,6 +6429,67 @@
                 "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.1.1"
             },
             "time": "2025-04-30T06:54:44+00:00"
+        },
+        {
+            "name": "laravel-zero/phar-updater",
+            "version": "v1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-zero/phar-updater.git",
+                "reference": "131bc5e7477c9233fab8087f7d0bbb234616b417"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-zero/phar-updater/zipball/131bc5e7477c9233fab8087f7d0bbb234616b417",
+                "reference": "131bc5e7477c9233fab8087f7d0bbb234616b417",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "conflict": {
+                "padraic/phar-updater": "*"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "laravel/pint": "^1.21",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^11.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Humbug\\SelfUpdate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Padraic Brady",
+                    "email": "padraic.brady@gmail.com",
+                    "homepage": "http://blog.astrumfutura.com"
+                },
+                {
+                    "name": "Owen Voke",
+                    "email": "development@voke.dev",
+                    "homepage": "https://voke.dev"
+                }
+            ],
+            "description": "A thing to make PHAR self-updating easy and secure.",
+            "keywords": [
+                "humbug",
+                "phar",
+                "self-update",
+                "update"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel-zero/phar-updater/issues",
+                "source": "https://github.com/laravel-zero/phar-updater/tree/v1.4.2"
+            },
+            "time": "2025-04-07T12:28:11+00:00"
         },
         {
             "name": "laravel/pail",

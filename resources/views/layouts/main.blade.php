@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Optik Nasionalis Kacamata')</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('styles')
     <style>
     @font-face {
@@ -62,7 +62,7 @@
                         
                         <div x-show="open" @click.away="open = false" x-cloak class="absolute right-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 z-50">
                             <a href="{{ route('profile.index') }}" class="block px-4 py-2 text-[#70574D] hover:bg-gray-100 transition">Profile</a>
-                            <a href="#" class="block px-4 py-2 text-[#70574D] hover:bg-gray-100 transition">Pesanan Saya</a>
+                            <a href="{{ route('orders.index') }}" class="block px-4 py-2 text-[#70574D] hover:bg-gray-100 transition">Pesanan Saya</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="w-full text-left px-4 py-2 text-[#70574D] hover:bg-gray-100 transition">Logout</button>

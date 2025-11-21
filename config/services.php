@@ -13,6 +13,11 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'xendit' => [
+        'api_key' => env('XENDIT_API_KEY'),
+        'callback_token' => env('XENDIT_CALLBACK_TOKEN'),
+        'mode' => env('XENDIT_MODE', 'test'),
+    ],
 
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
