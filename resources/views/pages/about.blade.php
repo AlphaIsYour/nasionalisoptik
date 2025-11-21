@@ -48,7 +48,7 @@
 
 <!-- Subtitle -->
 <div class="container mx-auto px-4 py-8">
-    <h2 class="text-2xl md:text-4xl text-[#70574D] urban-shadow     text-center leading-relaxed max-w-5xl mx-auto">
+    <h2 class="text-2xl md:text-4xl text-[#A78B7D] urban-shadow     text-center leading-relaxed max-w-5xl mx-auto">
         Berdiri sejak tahun 1994, Nasionalis Optik bergerak di bidang refraksionis optik.
     </h2>
 </div>
