@@ -39,9 +39,13 @@
                             <div class="flex gap-2">
                                 @foreach($order->items->take(3) as $item)
                                     <div class="w-16 h-16 bg-gray-100">
-                                        @if($item->product && $item->product->primary_image)
-                                            <img src="{{ asset('storage/' . $item->product->primary_image) }}" alt="{{ $item->product_name }}" class="w-full h-full object-cover">
-                                        @endif
+                                    @if($item->product && $item->product->primaryImage)
+                                        <img src="{{ asset('storage/' . $item->product->primaryImage->image_path) }}" alt="{{ $item->product_name }}" class="w-full h-full object-cover">
+                                    @else
+                                        <div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400 text-xs">
+                                            No Image
+                                        </div>
+                                    @endif
                                     </div>
                                 @endforeach
                                 @if($order->items->count() > 3)
@@ -93,4 +97,75 @@
         @endif
     </div>
 </div>
+<!-- Upload Proof Modal -->
+<div id="uploadModal" class="hidden fixed inset-0 bg-black/20 bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white max-w-md w-full p-8">
+        <div class="flex justify-between items-start mb-6">
+            <h3 class="text-2xl font-bold text-[#70574D]">Upload Bukti Transfer</h3>
+            <button onclick="hideUploadModal()" class="text-gray-400 hover:text-gray-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <form method="POST" id="uploadForm" enctype="multipart/form-data">
+            @csrf
+            
+            <div class="mb-6">
+                <label for="payment_proof" class="block text-sm font-medium text-gray-700 mb-2">
+                    Pilih File Bukti Transfer (JPG, PNG - Max 2MB)
+                </label>
+                <input 
+                    type="file" 
+                    name="payment_proof" 
+                    id="payment_proof" 
+                    accept="image/jpeg,image/jpg,image/png"
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-[#70574D] transition"
+                >
+                <p class="mt-2 text-sm text-gray-500">Format: JPG, JPEG, PNG. Maksimal 2MB.</p>
+            </div>
+
+            <div class="flex gap-4">
+                <button 
+                    type="button"
+                    onclick="hideUploadModal()"
+                    class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition"
+                >
+                    Batal
+                </button>
+                <button 
+                    type="submit"
+                    class="flex-1 px-6 py-3 bg-[#70574D] text-white font-medium hover:opacity-90 transition"
+                >
+                    Upload
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+let currentOrderId = null;
+
+function showUploadModal(orderId) {
+    currentOrderId = orderId;
+    const form = document.getElementById('uploadForm');
+    form.action = `/orders/${orderId}/upload-proof`;
+    document.getElementById('uploadModal').classList.remove('hidden');
+}
+
+function hideUploadModal() {
+    document.getElementById('uploadModal').classList.add('hidden');
+    currentOrderId = null;
+}
+
+// Close modal on background click
+document.getElementById('uploadModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideUploadModal();
+    }
+});
+</script>
 @endsection

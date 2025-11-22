@@ -60,20 +60,23 @@ Route::middleware('auth')->group(function () {
     Route::post('/orders/{order}/cancel', [\App\Http\Controllers\User\OrderController::class, 'cancel'])->name('orders.cancel');
 });
 
-// Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login.post');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     
-    // Protected Admin Routes
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         
-        // Products Management
         Route::resource('products', AdminProductController::class);
         Route::post('products/{product}/set-primary-image', [AdminProductController::class, 'setPrimaryImage'])->name('products.set-primary');
         Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class);
+        
+        Route::get('orders', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
+        Route::get('orders/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
+        Route::put('orders/{order}/status', [\App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('orders.update-status');
+        Route::post('orders/{order}/approve-payment', [\App\Http\Controllers\Admin\OrderController::class, 'approvePayment'])->name('orders.approve-payment');
+        Route::post('orders/{order}/reject-payment', [\App\Http\Controllers\Admin\OrderController::class, 'rejectPayment'])->name('orders.reject-payment');
+        Route::delete('orders/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'destroy'])->name('orders.destroy');
     });
 });
-

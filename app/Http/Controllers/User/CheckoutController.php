@@ -19,27 +19,44 @@ class CheckoutController extends Controller
         $this->xenditService = $xenditService;
     }
 
-    // Show Checkout Page
-    public function index()
+    public function index(Request $request)
     {
         /** @var User $user */
         $user = Auth::user();
         $cart = $user->getOrCreateCart();
         
-        // Check if cart is empty
-        if ($cart->items->count() === 0) {
-            return redirect()->route('cart.index')->with('error', 'Keranjang Anda kosong!');
+        // Get selected items from cart
+        $selectedItemIds = $request->input('selected_items', []);
+        
+        if (empty($selectedItemIds)) {
+            return redirect()->route('cart.index')->with('error', 'Silakan pilih minimal 1 item untuk checkout!');
         }
         
-        $cartItems = $cart->items()->with('product')->get();
+        // Get only selected cart items
+        $cartItems = $cart->items()
+            ->with('product')
+            ->whereIn('id', $selectedItemIds)
+            ->get();
         
-        return view('user.checkout.index', compact('cart', 'cartItems'));
+        if ($cartItems->count() === 0) {
+            return redirect()->route('cart.index')->with('error', 'Item yang dipilih tidak valid!');
+        }
+        
+        // Calculate subtotal for selected items only
+        $subtotal = $cartItems->sum(function ($item) {
+            return $item->price * $item->quantity;
+        });
+        
+        return view('user.checkout.index', compact('cart', 'cartItems', 'subtotal'));
     }
 
     // Process Checkout
+// Process Checkout
     public function process(Request $request)
     {
         $validated = $request->validate([
+            'selected_items' => 'required|array|min:1',
+            'selected_items.*' => 'exists:cart_items,id',
             'customer_name' => 'required|string|max:255',
             'customer_email' => 'required|email|max:255',
             'customer_phone' => 'required|string|max:20',
@@ -54,9 +71,21 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $cart = $user->cart;
 
-        if (!$cart || $cart->items->count() === 0) {
+        if (!$cart) {
             return redirect()->route('cart.index')->with('error', 'Keranjang Anda kosong!');
         }
+
+        // Get only selected items
+        $selectedItems = $cart->items()->whereIn('id', $validated['selected_items'])->get();
+
+        if ($selectedItems->count() === 0) {
+            return redirect()->route('cart.index')->with('error', 'Item yang dipilih tidak valid!');
+        }
+
+        // Calculate subtotal for selected items only
+        $subtotal = $selectedItems->sum(function ($item) {
+            return $item->price * $item->quantity;
+        });
 
         try {
             DB::beginTransaction();
@@ -71,26 +100,37 @@ class CheckoutController extends Controller
                 'shipping_address' => $validated['shipping_address'],
                 'city' => $validated['city'],
                 'postal_code' => $validated['postal_code'],
-                'subtotal' => $cart->subtotal,
+                'subtotal' => $subtotal,
                 'shipping_cost' => 0,
-                'total' => $cart->subtotal,
+                'total' => $subtotal,
                 'payment_method' => $validated['payment_method'],
                 'notes' => $validated['notes'] ?? null,
             ]);
 
-            // Create Order Items from Cart
-            foreach ($cart->items as $item) {
-                $order->items()->create([
-                    'product_id' => $item->product_id,
-                    'product_name' => $item->product->name,
-                    'quantity' => $item->quantity,
-                    'price' => $item->price,
-                    'subtotal' => $item->price * $item->quantity,
-                ]);
+            // Create Order Items from SELECTED Cart Items only
+// Create Order Items from SELECTED Cart Items only
+foreach ($selectedItems as $item) {
+    // Pastikan product masih ada
+    if (!$item->product) {
+        DB::rollBack();
+        return redirect()->back()->with('error', 'Produk tidak ditemukan.');
+    }
+    
+    // Pakai harga dari cart item (yang udah benar dari fix sebelumnya)
+    // Atau fallback ke harga produk kalau cart item belum diupdate
+    $finalPrice = $item->price; // Dari cart item
+    
+    $order->items()->create([
+        'product_id' => $item->product_id,
+        'product_name' => $item->product->name,
+        'quantity' => $item->quantity,
+        'price' => $finalPrice,
+        'subtotal' => $finalPrice * $item->quantity,
+    ]);
 
-                // Update product stock
-                $item->product->decrement('stock', $item->quantity);
-            }
+    // Update product stock
+    $item->product->decrement('stock', $item->quantity);
+}
 
             // Create Xendit Invoice (for e_wallet and credit_card)
             if (in_array($validated['payment_method'], ['e_wallet', 'credit_card'])) {
@@ -107,17 +147,15 @@ class CheckoutController extends Controller
                 }
             }
 
-            // Clear cart
-            $cart->items()->delete();
+            // Remove ONLY selected items from cart
+            $selectedItems->each->delete();
 
             DB::commit();
 
             // Redirect based on payment method
             if (in_array($validated['payment_method'], ['e_wallet', 'credit_card'])) {
-                // Redirect to Xendit payment page
                 return redirect()->away($order->xendit_invoice_url);
             } else {
-                // Redirect to success page for bank transfer
                 return redirect()->route('checkout.success', $order)->with('success', 'Pesanan berhasil dibuat!');
             }
 

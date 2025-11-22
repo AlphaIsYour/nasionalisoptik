@@ -14,6 +14,11 @@
         <form method="POST" action="{{ route('checkout.process') }}">
             @csrf
             
+            <!-- Hidden input untuk selected items -->
+            @foreach($cartItems as $item)
+                <input type="hidden" name="selected_items[]" value="{{ $item->id }}">
+            @endforeach
+            
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Shipping Information -->
                 <div class="lg:col-span-2 space-y-6">
@@ -201,8 +206,12 @@
                             @foreach($cartItems as $item)
                                 <div class="flex gap-3">
                                     <div class="w-16 h-16 bg-gray-100 flex-shrink-0">
-                                        @if($item->product->primary_image)
-                                            <img src="{{ asset('storage/' . $item->product->primary_image) }}" alt="{{ $item->product->name }}" class="w-full h-full object-cover">
+                                        @if($item->product->primaryImage)
+                                            <img src="{{ asset('storage/' . $item->product->primaryImage->image_path) }}" alt="{{ $item->product->name }}" class="w-full h-full object-cover">
+                                        @else
+                                            <div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">
+                                                No Image
+                                            </div>
                                         @endif
                                     </div>
                                     <div class="flex-1">
@@ -218,7 +227,7 @@
                         <div class="space-y-3 mb-6">
                             <div class="flex justify-between text-gray-600">
                                 <span>Subtotal</span>
-                                <span>Rp {{ number_format($cart->subtotal, 0, ',', '.') }}</span>
+                                <span>Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
                             </div>
                             
                             <div class="flex justify-between text-gray-600">
@@ -229,7 +238,7 @@
                             <div class="border-t border-gray-200 pt-3">
                                 <div class="flex justify-between text-xl font-bold text-[#70574D]">
                                     <span>Total</span>
-                                    <span>Rp {{ number_format($cart->subtotal, 0, ',', '.') }}</span>
+                                    <span>Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
                                 </div>
                             </div>
                         </div>

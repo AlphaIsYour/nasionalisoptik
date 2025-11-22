@@ -53,7 +53,7 @@ class ProductController extends Controller
 
         $product = Product::create($validated);
 
-        // Handle multiple images
+        // untuk menghandle upload image lebih dari satu
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $image) {
                 $path = $image->store('products', 'public');
@@ -61,7 +61,7 @@ class ProductController extends Controller
                 ProductImage::create([
                     'product_id' => $product->id,
                     'image_path' => $path,
-                    'is_primary' => $index === 0, // First image as primary
+                    'is_primary' => $index === 0,
                     'sort_order' => $index
                 ]);
             }
@@ -106,12 +106,12 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        // Delete selected images
+        
         if ($request->has('delete_images')) {
             ProductImage::whereIn('id', $request->delete_images)->delete();
         }
 
-        // Add new images
+        
         if ($request->hasFile('images')) {
             $existingCount = $product->images()->count();
             
@@ -143,10 +143,10 @@ class ProductController extends Controller
     {
         $imageId = $request->image_id;
         
-        // Remove primary from all images
+        
         $product->images()->update(['is_primary' => false]);
         
-        // Set new primary
+        
         ProductImage::where('id', $imageId)->update(['is_primary' => true]);
         
         return response()->json(['success' => true]);

@@ -108,11 +108,11 @@
 </div>
 
 <!-- Products Section -->
-<div class="py-16">
+<div class="py-8 max-w-7xl justify-center mx-auto">
     <div class="container mx-auto px-20">
         <!-- Section Title -->
         <div class="text-center mb-12">
-            <button class="bg-[#70574D] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#8b7566] transition mona-sans">
+            <button class="bg-[#70574D] text-white px-8 py-3 rounded-[2px] font-semibold hover:bg-[#8b7566] transition mona-sans">
                 Lihat Produk Kami
             </button>
         </div>

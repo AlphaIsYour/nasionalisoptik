@@ -38,6 +38,16 @@
                     </svg>
                     Layanan
                 </a>
+
+                <a href="{{ route('admin.orders.index') }}" 
+                class="flex items-center px-4 py-3 mb-2 rounded-lg 
+                {{ request()->routeIs('admin.orders.*') ? 'bg-white/20' : 'hover:bg-white/10' }} transition">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                            d="M9 12h6m-6 4h6M7 4h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2z" />
+                    </svg>
+                    Pesanan
+                </a>
             </nav>
 
             <div class="absolute bottom-0 w-64 p-4 border-t border-white/10">
@@ -78,32 +88,69 @@
 
             <!-- Content Area -->
             <main class="flex-1 overflow-y-auto p-6">
-                @if(session('success'))
-                    <div class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg flex items-center justify-between">
-                        <span>{{ session('success') }}</span>
-                        <button onclick="this.parentElement.remove()" class="text-green-700 hover:text-green-900">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                        </button>
-                    </div>
-                @endif
-
-                @if(session('error'))
-                    <div class="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg flex items-center justify-between">
-                        <span>{{ session('error') }}</span>
-                        <button onclick="this.parentElement.remove()" class="text-red-700 hover:text-red-900">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                        </button>
-                    </div>
-                @endif
-
                 @yield('content')
             </main>
         </div>
     </div>
+
+    <!-- Toast Notifications -->
+    @if(session('success') || session('error'))
+        <div id="adminToast" class="fixed top-4 right-4 z-50 transform transition-all duration-500 ease-in-out translate-x-0 opacity-100">
+            @if(session('success'))
+                <div class="bg-green-500 text-white px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3 min-w-[350px] max-w-md">
+                    <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p class="font-medium flex-1">{{ session('success') }}</p>
+                    <button onclick="closeAdminToast()" class="ml-auto hover:bg-white/20 rounded p-1 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="bg-red-500 text-white px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3 min-w-[350px] max-w-md">
+                    <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p class="font-medium flex-1">{{ session('error') }}</p>
+                    <button onclick="closeAdminToast()" class="ml-auto hover:bg-white/20 rounded p-1 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            @endif
+        </div>
+
+        <script>
+            // Slide in animation
+            window.addEventListener('DOMContentLoaded', function() {
+                const toast = document.getElementById('adminToast');
+                if (toast) {
+                    toast.classList.add('translate-x-[400px]', 'opacity-0');
+                    setTimeout(() => {
+                        toast.classList.remove('translate-x-[400px]', 'opacity-0');
+                    }, 100);
+                }
+            });
+
+            // Auto hide toast after 5 seconds
+            setTimeout(function() {
+                closeAdminToast();
+            }, 5000);
+
+            function closeAdminToast() {
+                const toast = document.getElementById('adminToast');
+                if (toast) {
+                    toast.classList.add('translate-x-[400px]', 'opacity-0');
+                    setTimeout(() => toast.remove(), 500);
+                }
+            }
+        </script>
+    @endif
 
     @stack('scripts')
 </body>

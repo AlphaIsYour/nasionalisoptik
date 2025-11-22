@@ -81,22 +81,6 @@
         </div>
     </nav>
 
-    <!-- Flash Messages -->
-    @if(session('success'))
-        <div class="max-w-7xl mx-auto px-8 mt-4">
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3" role="alert">
-                <span class="block sm:inline">{{ session('success') }}</span>
-            </div>
-        </div>
-    @endif
-
-    @if(session('error'))
-        <div class="max-w-7xl mx-auto px-8 mt-4">
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3" role="alert">
-                <span class="block sm:inline">{{ session('error') }}</span>
-            </div>
-        </div>
-    @endif
 
     <!-- Main Content -->
     <main class="flex-1 w-full">
@@ -107,13 +91,13 @@
     <footer class="bg-[#70574D] text-white pt-12 px-8 pb-4 mt-auto mona-sans">
         <div class="max-w-7xl mx-auto grid grid-cols-[2fr_1fr_1fr] gap-12 mb-8">
             <div>
-                <h3 class="mb-4 text-xl"><strong>Optik Nasionalis Kacamata</strong></h3> 
-                <p>Optik terpercaya yang telah melayani masyarakat selama bertahun-tahun dengan mengutamakan kualitas dan layanan yang ramah.</p>
+                <h3 class="mb-4 text-lg"><strong>Optik Nasionalis Kacamata</strong></h3> 
+                <p class="text-[14px]">Optik terpercaya yang telah melayani masyarakat selama bertahun-tahun dengan mengutamakan kualitas dan layanan yang ramah.</p>
             </div>
             
             <div>
-                <h3 class="mb-4 text-xl"><strong>Menu</strong></h3>
-                <ul class="list-none">
+                <h3 class="mb-4 text-lg"><strong>Menu</strong></h3>
+                <ul class="list-none text-[14px]">
                     <li class="mb-2"><a href="{{ route('home') }}" class="text-white no-underline hover:opacity-80 transition">Beranda</a></li>
                     <li class="mb-2"><a href="{{ route('about') }}" class="text-white no-underline hover:opacity-80 transition">Tentang Toko</a></li>
                     <li class="mb-2"><a href="{{ route('products.index') }}" class="text-white no-underline hover:opacity-80 transition">Produk Layanan</a></li>
@@ -122,17 +106,76 @@
             </div>
             
             <div>
-                <h3 class="mb-4 text-xl"><strong>Kontak</strong></h3>
-                <p class="mb-2 leading-relaxed">Jl. Panglima Sudirman 206A<br>(Depan Bank Syariah Indonesia)<br>Turen, Malang</p>
-                <p class="mb-2 leading-relaxed">+62 813 3129 6965</p>
-                <p class="mb-2 leading-relaxed">Senin - Minggu: 08:00 - 19:00</p>
+                <h3 class="mb-4 text-lg"><strong>Kontak</strong></h3>
+                <p class="mb-2 leading-relaxed text-[14px]">Jl. Panglima Sudirman 206A<br>(Depan Bank Syariah Indonesia)<br>Turen, Malang</p>
+                <p class="mb-2 leading-relaxed text-[14px]">+62 813 3129 6965</p>
+                <p class="mb-2 leading-relaxed text-[14px]">Senin - Minggu: 08:00 - 19:00</p>
             </div>
         </div>
         
-        <div class="text-center pt-8 border-t border-white/30">
+        <div class="text-center pt-8 border-t border-white/30 text-[14px]">
             <p>© 2025 Optik Nasionalis Kacamata. Semua hak dilindungi.</p>
         </div>
     </footer>
+
+    <!-- Toast Notifications -->
+    @if(session('success') || session('error'))
+        <div id="toast" class="fixed top-4 right-4 z-50 transform transition-all duration-500 ease-in-out translate-x-0 opacity-100">
+            @if(session('success'))
+                <div class="bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 min-w-[300px]">
+                    <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p class="font-medium">{{ session('success') }}</p>
+                    <button onclick="closeToast()" class="ml-auto">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 min-w-[300px]">
+                    <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p class="font-medium">{{ session('error') }}</p>
+                    <button onclick="closeToast()" class="ml-auto">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            @endif
+        </div>
+
+        <script>
+            // Slide in animation
+            window.addEventListener('DOMContentLoaded', function() {
+                const toast = document.getElementById('toast');
+                if (toast) {
+                    toast.classList.add('-translate-x-[400px]', 'opacity-0');
+                    setTimeout(() => {
+                        toast.classList.remove('-translate-x-[400px]', 'opacity-0');
+                    }, 100);
+                }
+            });
+
+            // Auto hide toast after 5 seconds
+            setTimeout(function() {
+                closeToast();
+            }, 3000);
+
+            function closeToast() {
+                const toast = document.getElementById('toast');
+                if (toast) {
+                    toast.classList.add('translate-x-[400px]', 'opacity-0');
+                    setTimeout(() => toast.remove(), 500);
+                }
+            }
+        </script>
+    @endif
 
     @yield('scripts')
 </body>

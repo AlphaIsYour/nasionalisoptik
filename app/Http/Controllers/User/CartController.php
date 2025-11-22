@@ -46,7 +46,7 @@ class CartController extends Controller
             $cart->items()->create([
                 'product_id' => $product->id,
                 'quantity' => $validated['quantity'],
-                'price' => $product->price, // Simpan harga saat ini
+                'price' => $product->final_price, // Simpan harga saat ini
             ]);
         }
 
