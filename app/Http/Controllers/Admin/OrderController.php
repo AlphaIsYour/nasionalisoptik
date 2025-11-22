@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\PaymentApproved;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderShipped;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -52,6 +56,8 @@ class OrderController extends Controller
             'status' => 'required|in:pending,processing,shipped,delivered,cancelled',
         ]);
 
+        $oldStatus = $order->status;
+        
         $order->update([
             'status' => $validated['status']
         ]);
@@ -60,6 +66,15 @@ class OrderController extends Controller
         if ($validated['status'] === 'cancelled') {
             foreach ($order->items as $item) {
                 $item->product->increment('stock', $item->quantity);
+            }
+        }
+
+        // Send email when status changed to shipped
+        if ($validated['status'] === 'shipped' && $oldStatus !== 'shipped') {
+            try {
+                Mail::to($order->customer_email)->send(new OrderShipped($order));
+            } catch (\Exception $e) {
+                Log::error('Failed to send order shipped email: ' . $e->getMessage());
             }
         }
 
@@ -79,7 +94,14 @@ class OrderController extends Controller
             'paid_at' => now(),
         ]);
 
-        return redirect()->back()->with('success', 'Pembayaran berhasil dikonfirmasi!');
+        // Send email notification
+        try {
+            Mail::to($order->customer_email)->send(new PaymentApproved($order));
+        } catch (\Exception $e) {
+            Log::error('Failed to send payment approved email: ' . $e->getMessage());
+        }
+
+        return redirect()->back()->with('success', 'Pembayaran berhasil dikonfirmasi dan email notifikasi telah dikirim!');
     }
 
     // Reject Payment

@@ -9,6 +9,9 @@ use App\Services\XenditService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Mail\OrderCreated;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
@@ -151,6 +154,13 @@ foreach ($selectedItems as $item) {
             $selectedItems->each->delete();
 
             DB::commit();
+
+            try {
+                Mail::to($order->customer_email)->send(new OrderCreated($order));
+            } catch (\Exception $e) {
+                // Log error tapi jangan break flow
+                Log::error('Failed to send order email: ' . $e->getMessage());
+            }
 
             // Redirect based on payment method
             if (in_array($validated['payment_method'], ['e_wallet', 'credit_card'])) {
