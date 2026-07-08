@@ -16,17 +16,17 @@
                 @foreach($orders as $order)
                     <div class="bg-white border border-gray-200 p-6">
                         <!-- Order Header -->
-                        <div class="flex justify-between items-start mb-4 pb-4 border-b border-gray-200">
+                        <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4 pb-4 border-b border-gray-200">
                             <div>
                                 <p class="text-sm text-gray-600 mb-1">Nomor Pesanan</p>
                                 <p class="text-xl font-bold text-[#70574D]">{{ $order->order_number }}</p>
                                 <p class="text-sm text-gray-600 mt-1">{{ $order->created_at->format('d F Y, H:i') }}</p>
                             </div>
-                            <div class="text-right">
+                            <div class="text-left sm:text-right">
                                 <span class="inline-block px-3 py-1 text-sm font-semibold {{ $order->status_badge }} mb-2">
                                     {{ ucfirst($order->status) }}
                                 </span>
-                                <br>
+                                <br class="hidden sm:inline">
                                 <span class="inline-block px-3 py-1 text-sm font-semibold {{ $order->payment_status_badge }}">
                                     Payment: {{ ucfirst($order->payment_status) }}
                                 </span>
@@ -57,18 +57,18 @@
                         </div>
 
                         <!-- Total & Actions -->
-                        <div class="flex justify-between items-center">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
                                 <p class="text-sm text-gray-600">Total Pembayaran</p>
                                 <p class="text-2xl font-bold text-[#70574D]">Rp {{ number_format($order->total, 0, ',', '.') }}</p>
                             </div>
-                            <div class="flex gap-3">
-                                <a href="{{ route('orders.show', $order) }}" class="px-6 py-2 border border-[#70574D] text-[#70574D] font-medium hover:bg-[#70574D] hover:text-white transition">
+                            <div class="flex gap-3 w-full sm:w-auto">
+                                <a href="{{ route('orders.show', $order) }}" class="flex-1 sm:flex-none text-center px-6 py-2 border border-[#70574D] text-[#70574D] font-medium hover:bg-[#70574D] hover:text-white transition">
                                     Detail
                                 </a>
                                 
                                 @if($order->payment_method === 'bank_transfer' && $order->payment_status === 'pending')
-                                    <button onclick="showUploadModal({{ $order->id }})" class="px-6 py-2 bg-[#70574D] text-white font-medium hover:opacity-90 transition">
+                                    <button onclick="showUploadModal({{ $order->id }})" class="flex-1 sm:flex-none px-6 py-2 bg-[#70574D] text-white font-medium hover:opacity-90 transition">
                                         Upload Bukti
                                     </button>
                                 @endif

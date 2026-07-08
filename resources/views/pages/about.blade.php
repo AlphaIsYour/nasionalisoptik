@@ -56,7 +56,7 @@
 </div>
 
 <!-- Content Sections -->
-<div class="container mx-auto px-16 space-y-8 pb-16 mona-sans">
+<div class="container mx-auto px-4 md:px-10 lg:px-16 space-y-8 pb-16 mona-sans">
     <!-- Section 1 -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div class="w-full h-full">

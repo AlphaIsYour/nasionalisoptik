@@ -13,7 +13,7 @@
     <div 
         x-show="isOpen" 
         x-transition
-        class="bg-white rounded-lg shadow-2xl w-96 h-[500px] flex flex-col"
+        class="bg-white rounded-lg shadow-2xl w-[calc(100vw-32px)] sm:w-96 h-[450px] sm:h-[500px] flex flex-col"
     >
         <!-- Header -->
         <div class="bg-[#70574D] text-white p-4 rounded-t-lg flex justify-between items-center">

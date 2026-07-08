@@ -39,7 +39,7 @@
     </div>
 
 
-    <div class="mb-8 rounded-lg overflow-hidden shadow-2xl mx-30">
+    <div class="mb-8 rounded-lg overflow-hidden shadow-2xl mx-4 md:mx-12 lg:mx-30">
         <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3109.636897418527!2d112.69128901228557!3d-8.16430358376414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd61f5faf49ac1f%3A0xbcd11ec3c7b92e28!2sOptik%20Nasionalis!5e0!3m2!1sid!2sid!4v1763436206742!5m2!1sid!2sid"
             width="100%" 

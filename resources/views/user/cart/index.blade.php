@@ -29,40 +29,42 @@
             </div>
 
             @foreach($cartItems as $item)
-                <div class="bg-white border border-gray-200 p-6">
-                    <div class="flex gap-6">
-                        <!-- Checkbox -->
-                        <div class="flex items-start pt-2">
-                            <input 
-                                type="checkbox" 
-                                data-item-id="{{ $item->id }}"
-                                data-price="{{ $item->price }}"
-                                data-quantity="{{ $item->quantity }}"
-                                data-total="{{ $item->total }}"
-                                class="cart-item-checkbox w-5 h-5 text-[#70574D] border-gray-300 rounded focus:ring-[#70574D]"
-                                onchange="updateSummary()"
-                            >
-                        </div>
+                <div class="bg-white border border-gray-200 p-4 sm:p-6">
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                        <div class="flex items-center sm:items-start gap-4">
+                            <!-- Checkbox -->
+                            <div class="flex items-start pt-1">
+                                <input 
+                                    type="checkbox" 
+                                    data-item-id="{{ $item->id }}"
+                                    data-price="{{ $item->price }}"
+                                    data-quantity="{{ $item->quantity }}"
+                                    data-total="{{ $item->total }}"
+                                    class="cart-item-checkbox w-5 h-5 text-[#70574D] border-gray-300 rounded focus:ring-[#70574D]"
+                                    onchange="updateSummary()"
+                                >
+                            </div>
 
-                        <!-- Product Image -->
-                        <div class="w-32 h-32 flex-shrink-0 bg-gray-100 overflow-hidden">
-                            @if($item->product->primaryImage)
-                                <img src="{{ $item->product->primaryImage->image_path }}" 
-                                    alt="{{ $item->product->name }}" 
-                                    class="w-full h-full object-cover">
-                            @else
-                                <div class="w-full h-full flex items-center justify-center text-gray-400">
-                                    No Image
-                                </div>
-                            @endif
+                            <!-- Product Image -->
+                            <div class="w-20 h-20 sm:w-32 sm:h-32 flex-shrink-0 bg-gray-100 overflow-hidden">
+                                @if($item->product->primaryImage)
+                                    <img src="{{ $item->product->primaryImage->image_path }}" 
+                                        alt="{{ $item->product->name }}" 
+                                        class="w-full h-full object-cover">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">
+                                        No Image
+                                    </div>
+                                @endif
+                            </div>
                         </div>
 
                         <!-- Product Info -->
                         <div class="flex-1">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
-                                    <h3 class="font-bold text-lg text-[#70574D]">{{ $item->product->name }}</h3>
-                                    <p class="text-sm text-gray-600">{{ $item->product->brand }}</p>
+                                    <h3 class="font-bold text-base sm:text-lg text-[#70574D]">{{ $item->product->name }}</h3>
+                                    <p class="text-xs sm:text-sm text-gray-600">{{ $item->product->brand }}</p>
                                 </div>
                                 <form method="POST" action="{{ route('cart.remove', $item) }}" class="inline">
                                     @csrf
@@ -75,11 +77,11 @@
                                 </form>
                             </div>
 
-                            <div class="flex items-center justify-between mt-4">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4">
                                 <!-- Quantity Controls -->
                                 <div class="flex items-center gap-3">
-                                    <span class="text-sm text-gray-600">Jumlah:</span>
-                                    <div class="flex items-center border border-gray-300">
+                                    <span class="text-xs sm:text-sm text-gray-600">Jumlah:</span>
+                                    <div class="flex items-center border border-gray-300 bg-white">
                                         <form method="POST" action="{{ route('cart.update', $item) }}" class="inline">
                                             @csrf
                                             @method('PUT')
@@ -89,7 +91,7 @@
                                             </button>
                                         </form>
                                         
-                                        <span class="px-4 py-1 border-x border-gray-300">{{ $item->quantity }}</span>
+                                        <span class="px-3 sm:px-4 py-1 border-x border-gray-300 text-sm">{{ $item->quantity }}</span>
                                         
                                         <form method="POST" action="{{ route('cart.update', $item) }}" class="inline">
                                             @csrf
@@ -103,9 +105,9 @@
                                 </div>
 
                                 <!-- Price -->
-                                <div class="text-right">
-                                    <p class="text-sm text-gray-600">Rp {{ number_format($item->price, 0, ',', '.') }} / pcs</p>
-                                    <p class="text-lg font-bold text-[#70574D]">Rp {{ number_format($item->total, 0, ',', '.') }}</p>
+                                <div class="text-left sm:text-right">
+                                    <p class="text-xs text-gray-500">Rp {{ number_format($item->price, 0, ',', '.') }} / pcs</p>
+                                    <p class="text-base sm:text-lg font-bold text-[#70574D]">Rp {{ number_format($item->total, 0, ',', '.') }}</p>
                                 </div>
                             </div>
                         </div>

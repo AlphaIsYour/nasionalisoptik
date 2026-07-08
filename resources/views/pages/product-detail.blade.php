@@ -19,7 +19,7 @@
 </style>
 <!-- Breadcrumb -->
 <div class="bg-[#70574D] py-4">
-    <div class="container mx-auto px-20 mona-sans">
+    <div class="container mx-auto px-4 sm:px-10 lg:px-20 mona-sans">
         <div class="flex items-center text-sm text-white">
             <a href="{{ route('home') }}" class="hover:text-gray-200">Beranda</a>
             <svg class="w-4 h-4 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -35,12 +35,12 @@
 </div>
 
 <!-- Product Detail -->
-<div class="container mx-auto px-5 sm:px-20 py-3 sm:py-12 mona-sans">
+<div class="container mx-auto px-4 sm:px-10 lg:px-20 py-3 sm:py-12 mona-sans">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
         <!-- Product Images -->
         <div>
             <!-- Main Image -->
-            <div class=" rounded-lg overflow-hidden mb-4" style="height: 500px;">
+            <div class="rounded-lg overflow-hidden mb-4 h-64 sm:h-96 lg:h-[500px] flex items-center justify-center bg-gray-100">
                 @if($product->images->count() > 0)
                     <img id="mainImage" src="{{ $product->images->first()->image_path }}" alt="{{ $product->name }}" class="w-full h-full object-contain">
                 @else
@@ -56,7 +56,7 @@
             @if($product->images->count() > 1)
                 <div class="grid grid-cols-4 gap-4">
                     @foreach($product->images as $image)
-                        <button onclick="changeImage('{{ $image->image_path }}')" class="bg-gray-100 rounded-lg overflow-hidden hover:ring-2 ring-[#A78B7D] transition" style="height: 100px;">
+                        <button onclick="changeImage('{{ $image->image_path }}')" class="bg-gray-100 rounded-lg overflow-hidden hover:ring-2 ring-[#A78B7D] transition h-16 sm:h-24 flex items-center justify-center">
                             <img src="{{ $image->image_path }}" alt="{{ $product->name }}" class="w-full h-full object-contain">
                         </button>
                     @endforeach

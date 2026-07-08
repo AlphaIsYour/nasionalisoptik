@@ -5,10 +5,10 @@
 @section('content')
 @include('components.banner')
 
-<div class="flex justify-center w-full px-4 py-16">
-  <div class="max-w-6xl mb-8 text-center">
-    <h1 class="font-bold text-5xl mb-4">FIND THE PERFECT GLASSES FOR YOUR STYLE</h1>
-    <p class="text-xl">Glasses are more than just vision aids - they're a fashion statement. From clear lenses to stylish sunglasses, every pair tells a story about who you are.</p>
+<div class="flex justify-center w-full px-4 py-10 sm:py-16">
+  <div class="max-w-6xl mb-8 text-center px-4">
+    <h1 class="font-bold text-3xl sm:text-5xl mb-4">FIND THE PERFECT GLASSES FOR YOUR STYLE</h1>
+    <p class="text-base sm:text-xl">Glasses are more than just vision aids - they're a fashion statement. From clear lenses to stylish sunglasses, every pair tells a story about who you are.</p>
   </div>
 </div>
 

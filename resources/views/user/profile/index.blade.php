@@ -12,37 +12,37 @@
         </div>
 
         <!-- Profile Card -->
-        <div class="bg-white border border-gray-200 p-8 mb-6">
-            <div class="flex items-start justify-between mb-6 pb-6 border-b border-gray-200">
+        <div class="bg-white border border-gray-200 p-6 sm:p-8 mb-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-6 border-b border-gray-200">
                 <div>
-                    <h2 class="text-xl font-bold text-[#70574D] mb-4">Informasi Personal</h2>
+                    <h2 class="text-xl font-bold text-[#70574D]">Informasi Personal</h2>
                 </div>
-                <a href="{{ route('profile.edit') }}" class="px-6 py-2 bg-[#70574D] text-white font-medium hover:opacity-90 transition">
+                <a href="{{ route('profile.edit') }}" class="w-full sm:w-auto text-center px-6 py-2 bg-[#70574D] text-white font-medium hover:opacity-90 transition">
                     Edit Profile
                 </a>
             </div>
 
             <div class="space-y-6">
-                <div class="grid grid-cols-3 gap-4">
-                    <div class="text-gray-600 font-medium">Nama Lengkap</div>
-                    <div class="col-span-2 text-gray-900">{{ Auth::user()->name }}</div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 pb-4 border-b border-gray-100 sm:border-0">
+                    <div class="text-gray-500 sm:text-gray-600 font-medium text-xs sm:text-base">Nama Lengkap</div>
+                    <div class="sm:col-span-2 text-gray-900 font-medium sm:font-normal">{{ Auth::user()->name }}</div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-4">
-                    <div class="text-gray-600 font-medium">Email</div>
-                    <div class="col-span-2 text-gray-900">{{ Auth::user()->email }}</div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 pb-4 border-b border-gray-100 sm:border-0">
+                    <div class="text-gray-500 sm:text-gray-600 font-medium text-xs sm:text-base">Email</div>
+                    <div class="sm:col-span-2 text-gray-900 font-medium sm:font-normal">{{ Auth::user()->email }}</div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-4">
-                    <div class="text-gray-600 font-medium">Nomor Telepon</div>
-                    <div class="col-span-2 text-gray-900">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 pb-4 border-b border-gray-100 sm:border-0">
+                    <div class="text-gray-500 sm:text-gray-600 font-medium text-xs sm:text-base">Nomor Telepon</div>
+                    <div class="sm:col-span-2 text-gray-900 font-medium sm:font-normal">
                         {{ Auth::user()->phone ?? '-' }}
                     </div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-4">
-                    <div class="text-gray-600 font-medium">Bergabung Sejak</div>
-                    <div class="col-span-2 text-gray-900">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4">
+                    <div class="text-gray-500 sm:text-gray-600 font-medium text-xs sm:text-base">Bergabung Sejak</div>
+                    <div class="sm:col-span-2 text-gray-900 font-medium sm:font-normal">
                         {{ Auth::user()->created_at->format('d F Y') }}
                     </div>
                 </div>
@@ -50,15 +50,15 @@
         </div>
 
         <!-- Security Card -->
-        <div class="bg-white border border-gray-200 p-8">
-            <div class="flex items-start justify-between">
+        <div class="bg-white border border-gray-200 p-6 sm:p-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
                     <h2 class="text-xl font-bold text-[#70574D] mb-2">Keamanan</h2>
                     <p class="text-gray-600 text-sm">Password terakhir diubah {{ Auth::user()->updated_at->diffForHumans() }}</p>
                 </div>
                 <button 
                     onclick="document.getElementById('passwordModal').classList.remove('hidden')"
-                    class="px-6 py-2 border border-[#70574D] text-[#70574D] font-medium hover:bg-[#70574D] hover:text-white transition"
+                    class="w-full sm:w-auto px-6 py-2 border border-[#70574D] text-[#70574D] font-medium hover:bg-[#70574D] hover:text-white transition"
                 >
                     Ubah Password
                 </button>

@@ -79,25 +79,25 @@
 
 
 <!-- Services Section -->
-<div class="max-w-7xl mx-auto px-20 py-10 ">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+<div class="max-w-7xl mx-auto px-4 sm:px-10 lg:px-20 py-10 ">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         @foreach($services as $service)
-        <a href="{{ getWhatsAppLink($service->id) }}" target="_blank" class="bg-white grid grid-cols-2 h-64 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group">
-            <div class="p-6 flex flex-col justify-between">
+        <a href="{{ getWhatsAppLink($service->id) }}" target="_blank" class="bg-white flex flex-col sm:grid sm:grid-cols-2 h-auto sm:h-64 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition group">
+            <div class="p-6 flex flex-col justify-between order-2 sm:order-1 flex-1">
                 <div>
-                    <h3 class="text-2xl mb-2 custom-font">{{ strtoupper($service->title) }}</h3>
-                    <p class="text-gray-600 text-sm line-clamp-3 mona-sans">{{ $service->description }}</p>
+                    <h3 class="text-xl sm:text-2xl mb-2 custom-font text-[#70574D]">{{ strtoupper($service->title) }}</h3>
+                    <p class="text-gray-600 text-sm line-clamp-3 sm:line-clamp-none lg:line-clamp-3 mona-sans">{{ $service->description }}</p>
                 </div>
-                <div class="flex items-center text-[#A78B7D] font-semibold mona-sans">
+                <div class="flex items-center text-[#A78B7D] font-semibold mona-sans mt-4 sm:mt-0">
                     <span>Hubungi Kami</span>
                     <svg class="w-5 h-5 mt-1 ml-2 group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
                 </div>
             </div>
-            <div class="h-full bg-gray-200 overflow-hidden">
+            <div class="h-48 sm:h-full bg-gray-200 overflow-hidden order-1 sm:order-2 flex-shrink-0">
                 @if($service->image_path)
-                    <img src="{{ $service->image_path }}" alt="{{ $service->title }}">
+                    <img src="{{ $service->image_path }}" alt="{{ $service->title }}" class="w-full h-full object-cover">
                 @else
                     <img src="{{ asset('/image/about/img1.jpg') }}" alt="{{ $service->title }}" class="w-full h-full object-cover">
                 @endif
@@ -109,7 +109,7 @@
 
 <!-- Products Section -->
 <div class="py-8 max-w-7xl justify-center mx-auto">
-    <div class="container mx-auto px-20">
+    <div class="container mx-auto px-4 sm:px-10 lg:px-20">
         <!-- Section Title -->
         <div class="text-center mb-12">
             <button class="bg-[#70574D] text-white px-8 py-3 rounded-[2px] font-semibold hover:bg-[#8b7566] transition mona-sans">

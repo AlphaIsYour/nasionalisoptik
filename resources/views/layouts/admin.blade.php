@@ -7,11 +7,16 @@
     <title>@yield('title') - Admin Optik Nasionalis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>[x-cloak] { display: none !important; }</style>
 </head>
 <body class="bg-gray-100">
-    <div class="flex h-screen overflow-hidden">
+    <div x-data="{ sidebarOpen: false }" class="flex h-screen overflow-hidden">
+        <!-- Backdrop -->
+        <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 z-30 bg-black/50 md:hidden" x-cloak></div>
+
         <!-- Sidebar -->
-        <aside class="w-64 bg-[#70574D] text-white flex-shrink-0">
+        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed md:relative inset-y-0 left-0 z-40 w-64 bg-[#70574D] text-white flex-shrink-0 transition-transform duration-300 ease-in-out md:translate-x-0">
             <div class="p-6 border-b border-white/10">
                 <h1 class="text-2xl font-bold">Optik Nasionalis</h1>
                 <p class="text-sm opacity-75 mt-1">Admin Panel</p>
@@ -76,11 +81,17 @@
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Header -->
             <header class="bg-white shadow-sm z-10">
-                <div class="px-6 py-4 flex items-center justify-between">
-                    <div>
-                        <h2 class="text-xl font-semibold text-gray-800">@yield('title')</h2>
+                <div class="px-4 sm:px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <!-- Hamburger button -->
+                        <button @click="sidebarOpen = !sidebarOpen" class="text-[#70574D] hover:text-gray-900 focus:outline-none md:hidden">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                            </svg>
+                        </button>
+                        <h2 class="text-lg sm:text-xl font-semibold text-gray-800">@yield('title')</h2>
                     </div>
-                    <a href="{{ route('home') }}" target="_blank" class="text-[#70574D] hover:underline text-sm font-semibold">
+                    <a href="{{ route('home') }}" target="_blank" class="text-[#70574D] hover:underline text-xs sm:text-sm font-semibold">
                         Lihat Website →
                     </a>
                 </div>

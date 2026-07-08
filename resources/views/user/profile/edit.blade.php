@@ -18,7 +18,7 @@
         </div>
 
         <!-- Edit Form -->
-        <div class="bg-white border border-gray-200 p-8">
+        <div class="bg-white border border-gray-200 p-6 sm:p-8">
             <form method="POST" action="{{ route('profile.update') }}" class="space-y-6">
                 @csrf
                 @method('PUT')
@@ -80,16 +80,16 @@
                 </div>
 
                 <!-- Buttons -->
-                <div class="flex gap-4 pt-4">
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
                     <a 
                         href="{{ route('profile.index') }}"
-                        class="flex-1 text-center px-6 py-3 border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition"
+                        class="w-full sm:flex-1 text-center px-6 py-3 border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition"
                     >
                         Batal
                     </a>
                     <button 
                         type="submit"
-                        class="flex-1 px-6 py-3 bg-[#70574D] text-white font-medium hover:opacity-90 transition"
+                        class="w-full sm:flex-1 px-6 py-3 bg-[#70574D] text-white font-medium hover:opacity-90 transition"
                     >
                         Simpan Perubahan
                     </button>

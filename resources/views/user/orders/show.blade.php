@@ -15,17 +15,17 @@
 
         <!-- Order Header -->
         <div class="bg-white border border-gray-200 p-6 mb-6">
-            <div class="flex justify-between items-start mb-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
                 <div>
                     <p class="text-sm text-gray-600 mb-1">Nomor Pesanan</p>
                     <p class="text-2xl font-bold text-[#70574D]">{{ $order->order_number }}</p>
                     <p class="text-sm text-gray-600 mt-1">{{ $order->created_at->format('d F Y, H:i') }}</p>
                 </div>
-                <div class="text-right">
+                <div class="text-left sm:text-right">
                     <span class="inline-block px-4 py-2 text-sm font-semibold {{ $order->status_badge }} mb-2">
                         {{ ucfirst($order->status) }}
                     </span>
-                    <br>
+                    <br class="hidden sm:inline">
                     <span class="inline-block px-4 py-2 text-sm font-semibold {{ $order->payment_status_badge }}">
                         Payment: {{ ucfirst($order->payment_status) }}
                     </span>

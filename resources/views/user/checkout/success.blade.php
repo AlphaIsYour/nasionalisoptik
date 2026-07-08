@@ -18,12 +18,12 @@
 
         <!-- Order Info -->
         <div class="bg-white border border-gray-200 p-6 mb-6">
-            <div class="flex justify-between items-start mb-6 pb-6 border-b border-gray-200">
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6 pb-6 border-b border-gray-200">
                 <div>
                     <p class="text-sm text-gray-600 mb-1">Nomor Pesanan</p>
                     <p class="text-2xl font-bold text-[#70574D]">{{ $order->order_number }}</p>
                 </div>
-                <div class="text-right">
+                <div class="text-left sm:text-right">
                     <p class="text-sm text-gray-600 mb-1">Tanggal Pesanan</p>
                     <p class="font-semibold">{{ $order->created_at->format('d F Y, H:i') }}</p>
                 </div>
@@ -85,11 +85,11 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex gap-4">
-            <a href="{{ route('home') }}" class="flex-1 text-center border border-[#70574D] text-[#70574D] py-3 px-6 font-medium hover:bg-[#70574D] hover:text-white transition">
+        <div class="flex flex-col sm:flex-row gap-4">
+            <a href="{{ route('home') }}" class="w-full sm:flex-1 text-center border border-[#70574D] text-[#70574D] py-3 px-6 font-medium hover:bg-[#70574D] hover:text-white transition">
                 Kembali ke Beranda
             </a>
-            <a href="{{ route('products.index') }}" class="flex-1 text-center bg-[#70574D] text-white py-3 px-6 font-medium hover:opacity-90 transition">
+            <a href="{{ route('products.index') }}" class="w-full sm:flex-1 text-center bg-[#70574D] text-white py-3 px-6 font-medium hover:opacity-90 transition">
                 Lanjut Belanja
             </a>
         </div>
