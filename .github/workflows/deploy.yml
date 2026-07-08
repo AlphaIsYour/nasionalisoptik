@@ -1,0 +1,53 @@
+name: Deploy Laravel to InfinityFree via FTP
+
+on:
+  push:
+    branches:
+      - v2-development
+
+jobs:
+  web-deploy:
+    name: Build and Deploy Laravel
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, xml, ctype, iconv, mysql, bcmath, gd
+
+    - name: Install Composer Dependencies
+      run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install NPM & Compile Assets
+      run: |
+        npm install
+        npm run build
+
+    - name: Sync files to InfinityFree FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: htdocs/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/.vscode/**
+          **/tests/**
+          **/phpunit.xml
+          **/*.sql
+          **/.env*
+          **/deploy.ps1
+          **/wellnessplate.*
+          **/unzip.php

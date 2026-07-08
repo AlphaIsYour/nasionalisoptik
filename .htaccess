@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block direct access to sensitive directories
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor) - [F,L]
+
+    # Block direct access to sensitive files
+    RewriteRule ^(\.env|composer\.json|composer\.lock|package\.json|package-lock\.json|artisan|phpunit\.xml|tailwind\.config\.js|vite\.config\.js) - [F,L]
+
+    # Force HTTPS redirect (Uncomment when SSL is active on InfinityFree)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Redirect all remaining traffic to the public folder
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
